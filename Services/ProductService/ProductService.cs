@@ -6,12 +6,6 @@ namespace MicroService1.Services.ProductService
     {
 
         private readonly DataContext _context;
-        private static readonly List<Product> products = new List<Product>()
-            {
-                new Product{ Id = 1, Name = "Stylo", Description = "Bic"},
-                new Product{ Id = 2, Name = "Cahier", Description = "Selecta"}
-            };
-
 
         public ProductService(DataContext context)
         {
@@ -36,7 +30,7 @@ namespace MicroService1.Services.ProductService
 
             await _context.SaveChangesAsync();
 
-            return products;
+            return await _context.Products.ToListAsync();
         }
 
         public async Task<List<Product>> GetAllProduct()
@@ -62,7 +56,7 @@ namespace MicroService1.Services.ProductService
 
             await _context.SaveChangesAsync();
 
-            return products;
+            return await _context.Products.ToListAsync(); 
         }
     }
 }
